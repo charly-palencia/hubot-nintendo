@@ -1,8 +1,8 @@
 {
-  "name": "hubot-nintendo",
+  "name": "hubot-example",
   "description": "An example script package for Hubot",
-  "version": "0.0.1",
-  "author": "chalien <charly.palencia@koombea.com>",
+  "version": "1.0.0",
+  "author": "Tom Bell <tomb@tomb.io>",
   "license": "MIT",
   "keywords": [
     "hubot",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:charly-palencia/hubot-nintendo.git"
+    "url": "https://github.com/charly-palencia/hubot-nintendo.git"
   },
   "bugs": {
     "url": "https://github.com/hubot-scripts/hubot-example/issues"
