@@ -8,7 +8,8 @@
 #   None
 #
 # Commands:
-#   hubot search game [query] - Hubot search nintendo games
+#   hubot nintendo search [query] - Hubot search nintendo games
+#   hubot nintendo show [id] - Hubot search nintendo game detail
 #
 # Author:
 #   chalien

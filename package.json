@@ -1,7 +1,7 @@
 {
   "name": "hubot-nintendo",
   "description": "hubot nintendo search games",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Chalien<charly.palencia@koombea.com>",
   "license": "MIT",
   "keywords": [
