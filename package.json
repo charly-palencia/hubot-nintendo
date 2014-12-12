@@ -1,8 +1,8 @@
 {
-  "name": "hubot-example",
-  "description": "An example script package for Hubot",
+  "name": "hubot-nintendo",
+  "description": "hubot nintendo search games",
   "version": "1.0.0",
-  "author": "Tom Bell <tomb@tomb.io>",
+  "author": "Chalien<charly.palencia@koombea.com>",
   "license": "MIT",
   "keywords": [
     "hubot",
@@ -23,7 +23,9 @@
     "chai": "*",
     "sinon-chai": "*",
     "sinon": "*",
-    "hubot-mock-adapter": "^1.0.0"
+    "hubot-mock-adapter": "^1.0.0",
+    "hubot-mock-adapter-helper": "0.0.1",
+    "hubot": "~2.10.0"
   },
   "main": "index.coffee",
   "scripts": {
