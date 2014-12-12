@@ -1,5 +1,5 @@
 # Description:
-#   Say Hi to Hubot.
+#   Search nintendo games
 #
 # Dependencies:
 #   None
@@ -8,10 +8,10 @@
 #   None
 #
 # Commands:
-#   nana search game
+#   hubot search game [query] - Hubot search nintendo games
 #
 # Author:
-#   tombell
+#   chalien
 
 module.exports = (robot) ->
   robot.respond /search game (.*)/, (msg) ->
@@ -22,7 +22,6 @@ module.exports = (robot) ->
       qsortBy: "releaseDate"
       qcurrentreleased: 1
 
-
     msg.http("http://www.nintendo.com/json/content/get/game/filter")
       .header('Accept', 'application/json')
       .query(query)
@@ -30,10 +29,12 @@ module.exports = (robot) ->
         results = []
         response = JSON.parse(body)
         if response.total > 0
+          gameNames = []
           response.game.forEach (gameCard)->
-            results.push gameCard.title
+            gameNames.push "#{gameCard.title} (#{gameCard.id})"
+          results = gameNames.join("\n")
         else
           results = "I didn't find any games for you"
-
         msg.reply results
+
 

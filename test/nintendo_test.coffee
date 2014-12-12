@@ -14,7 +14,7 @@ describe 'search nintendo games', ->
   beforeEach (done)->
     helper.setupRobot (ret) ->
       {robot, user, adapter} = ret
-      require('../src/hello-world')(robot)
+      require('../src/nintendo')(robot)
       do done
 
   afterEach ->
@@ -25,7 +25,7 @@ describe 'search nintendo games', ->
     it "successful response", (done)->
       adapter.on "reply", (envelop, strings) ->
         try
-          expect(strings[0].length).to.equal(39)
+          expect(strings[0]).to.not.equal("I didn't find any games for you")
           done()
 
         catch e
