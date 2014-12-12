@@ -20,7 +20,7 @@ describe 'search nintendo games', ->
   afterEach ->
     robot.shutdown()
 
-  describe "search game", ->
+  describe "nintendo search", ->
 
     it "successful response", (done)->
       adapter.on "reply", (envelop, strings) ->
@@ -31,7 +31,7 @@ describe 'search nintendo games', ->
         catch e
           done e
 
-      adapter.receive(new TextMessage(user, "hubot search game mario"))
+      adapter.receive(new TextMessage(user, "hubot nintendo search mario"))
 
     it "successful response with multiple words", (done)->
       adapter.on "reply", (envelop, strings) ->
@@ -42,7 +42,7 @@ describe 'search nintendo games', ->
         catch e
           done e
 
-      adapter.receive(new TextMessage(user, "hubot search game hyrule warriors"))
+      adapter.receive(new TextMessage(user, "hubot nintendo search hyrule warriors"))
 
     it "empty response", (done)->
 
@@ -54,7 +54,7 @@ describe 'search nintendo games', ->
         catch e
           done e
 
-      adapter.receive(new TextMessage(user, "hubot search game asdajwXBOX"))
+      adapter.receive(new TextMessage(user, "hubot nintendo search asdajwXBOX"))
 
   describe "game show (.*)", (done)->
     it "successful response", (done)->
@@ -66,7 +66,7 @@ describe 'search nintendo games', ->
         catch e
           done e
 
-      adapter.receive(new TextMessage(user, "hubot show game ZXkoJ75AEzAds5-6L0VvlgY-zUyOTGE0"))
+      adapter.receive(new TextMessage(user, "hubot nintendo show ZXkoJ75AEzAds5-6L0VvlgY-zUyOTGE0"))
 
 
 

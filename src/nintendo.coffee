@@ -18,10 +18,9 @@ GameMessageHelper = require("./gameMessageHelper")
 module.exports = (robot) ->
   messageHelper = new GameMessageHelper()
 
-  robot.respond /search game (.*)/, (msg) ->
+  robot.respond /nintendo search (.*)/, (msg) ->
     query =
       qterm: msg.match[1]
-      qhardware: "wii u",
       qdirection: "descend"
       qsortBy: "releaseDate"
       qcurrentreleased: 1
@@ -36,10 +35,9 @@ module.exports = (robot) ->
         msg.reply messageHelper.generateGameList(results)
     )
 
-  robot.respond /show game (.*)/, (msg) ->
+  robot.respond /nintendo show (.*)/, (msg) ->
     query =
       qid: msg.match[1]
-      qhardware: "wii u",
       qdirection: "descend"
       qsortBy: "releaseDate"
       qcurrentreleased: 1
