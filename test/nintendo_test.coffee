@@ -25,7 +25,7 @@ describe 'search nintendo games', ->
     it "successful response", (done)->
       adapter.on "reply", (envelop, strings) ->
         try
-          expect(strings[0]).to.not.equal("I didn't find any games for you")
+          expect(strings[0]).to.not.equal("I didn't find any games with 'asdajwXBOX'")
           done()
 
         catch e
@@ -46,6 +46,17 @@ describe 'search nintendo games', ->
       adapter.receive(new TextMessage(user, "hubot search game asdajwXBOX"))
 
   describe "game show (.*)", (done)->
+    it "successful response", (done)->
+      adapter.on "reply", (envelop, strings) ->
+        try
+          expect(strings[0]).to.not.equal("I didn't find any games with 'ZXkoJ75AEzAds5-6L0VvlgY-zUyOTGE0'")
+          done()
+
+        catch e
+          done e
+
+      adapter.receive(new TextMessage(user, "hubot show game ZXkoJ75AEzAds5-6L0VvlgY-zUyOTGE0"))
+
 
 
 
