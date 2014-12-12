@@ -37,7 +37,7 @@ describe 'search nintendo games', ->
 
       adapter.on "reply", (envelop, strings) ->
         try
-          expect(strings[0]).to.equal("I didn't find any games for you")
+          expect(strings[0]).to.equal("I didn't find any games with 'asdajwXBOX'")
           done()
 
         catch e

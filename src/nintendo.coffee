@@ -39,7 +39,7 @@ module.exports = (robot) ->
             """
           results = gameNames.join("\n")
         else
-          results = "I didn't find any games for you"
+          results = "I didn't find any games with '#{msg.match[1]}'"
         msg.reply results
 
 
