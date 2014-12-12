@@ -12,8 +12,12 @@
 #
 # Author:
 #   chalien
+RequestHelper = require("./requestHelper")
+GameMessageHelper = require("./gameMessageHelper")
 
 module.exports = (robot) ->
+  messageHelper = new GameMessageHelper()
+
   robot.respond /search game (.*)/, (msg) ->
     query =
       qterm: msg.match[1]
@@ -21,26 +25,16 @@ module.exports = (robot) ->
       qdirection: "descend"
       qsortBy: "releaseDate"
       qcurrentreleased: 1
+    url =  "http://www.nintendo.com/json/content/get/game/filter"
 
-    msg.http("http://www.nintendo.com/json/content/get/game/filter")
-      .header('Accept', 'application/json')
-      .query(query)
-      .get() (err, res, body) ->
-        results = []
-        response = JSON.parse(body)
-        if response.total > 0
-          gameNames = []
-          response.game.forEach (gameCard)->
-            gameNames.push """
+    nintendoClient = new RequestHelper(msg)
+    nintendoClient.get(query, url,
+      failure: ->
+        msg.reply messageHelper.generateGameNotFound(msg.match[1])
 
-            #{gameCard.title}
-            id: #{gameCard.id}
-            link: http://www.nintendo.com/games/detail/#{gameCard.id}
-            """
-          results = gameNames.join("\n")
-        else
-          results = "I didn't find any games with '#{msg.match[1]}'"
-        msg.reply results
+      success: (results) ->
+        msg.reply messageHelper.generateGameList(results)
+    )
 
   robot.respond /show game (.*)/, (msg) ->
     query =
@@ -50,25 +44,15 @@ module.exports = (robot) ->
       qsortBy: "releaseDate"
       qcurrentreleased: 1
 
-    msg.http("http://www.nintendo.com/json/content/get/game/list/filter/subset")
-      .header('Accept', 'application/json')
-      .query(query)
-      .get() (err, res, body) ->
-        results = []
-        response = JSON.parse(body)
-        if response.total > 0
-          gameCard = response.game
-          results =  """
+    url = "http://www.nintendo.com/json/content/get/game/list/filter/subset"
 
-          #{gameCard.title}
-          System: #{gameCard.system}
-          Release date: #{gameCard.release_date}
-          No of players: #{gameCard.number_of_players}
-          Category: #{gameCard.genre}
-          #{gameCard.front_box_art.url}
-          """
-        else
-          results = "I didn't find any games with '#{msg.match[1]}'"
-        msg.reply results
+    nintendoClient = new RequestHelper(msg)
+    nintendoClient.get(query, url,
+      failure: ->
+        msg.reply messageHelper.generateGameNotFound(msg.match[1])
+
+      success: (results) ->
+        msg.reply messageHelper.generateGameDetail(results[0])
+    )
 
 

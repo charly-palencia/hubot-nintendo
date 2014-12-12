@@ -33,6 +33,17 @@ describe 'search nintendo games', ->
 
       adapter.receive(new TextMessage(user, "hubot search game mario"))
 
+    it "successful response with multiple words", (done)->
+      adapter.on "reply", (envelop, strings) ->
+        try
+          expect(strings[0]).to.not.equal("I didn't find any games with 'hyrule warrios'")
+          done()
+
+        catch e
+          done e
+
+      adapter.receive(new TextMessage(user, "hubot search game hyrule warriors"))
+
     it "empty response", (done)->
 
       adapter.on "reply", (envelop, strings) ->
