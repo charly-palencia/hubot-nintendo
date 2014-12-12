@@ -35,6 +35,7 @@ module.exports = (robot) ->
             #{gameCard.title}
             id: #{gameCard.id}
             link: http://www.nintendo.com/games/detail/#{gameCard.id}
+
             """
           results = gameNames.join("\n")
         else
