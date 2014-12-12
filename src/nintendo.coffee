@@ -31,7 +31,11 @@ module.exports = (robot) ->
         if response.total > 0
           gameNames = []
           response.game.forEach (gameCard)->
-            gameNames.push "#{gameCard.title} (#{gameCard.id})"
+            gameNames.push """
+            #{gameCard.title}
+            id: #{gameCard.id}
+            link: http://www.nintendo.com/games/detail/#{gameCard.id}
+            """
           results = gameNames.join("\n")
         else
           results = "I didn't find any games for you"

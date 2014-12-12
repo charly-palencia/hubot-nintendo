@@ -45,4 +45,8 @@ describe 'search nintendo games', ->
 
       adapter.receive(new TextMessage(user, "hubot search game asdajwXBOX"))
 
+  describe "game show (.*)", (done)->
+
+
+
 
